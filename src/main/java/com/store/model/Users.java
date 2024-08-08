@@ -1,15 +1,18 @@
 package com.store.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="users")
 public class Users {
     @Id
@@ -34,5 +37,15 @@ public class Users {
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
+
+    @Setter
+    @Getter
+    private boolean enabled;
+
+    @Setter
+    @Getter
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> roles;
+
 
 }
